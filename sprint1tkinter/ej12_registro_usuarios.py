@@ -25,7 +25,7 @@ def salir():
 
 root = tk.Tk()
 root.title("Ejercicio 12 - Registro de Usuarios")
-root.geometry("400x400")
+root.geometry("800x600")
 
 tk.Label(root, text="Nombre:").pack()
 entry_nombre = tk.Entry(root)

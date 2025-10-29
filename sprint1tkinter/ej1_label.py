@@ -1,7 +1,7 @@
 import tkinter as tk
 
 def cambiar_texto():
-    etiqueta3.config(text="Texto cambiado!")
+    etiqueta3.config(text="Texto cambiado")
 
 root = tk.Tk()
 root.title("Ejercicio 1 - Label")

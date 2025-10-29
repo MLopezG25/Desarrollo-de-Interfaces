@@ -2,7 +2,7 @@ import tkinter as tk
 
 def saludar():
     nombre = entrada.get()
-    etiqueta_resultado.config(text=f"Hola, {nombre}!")
+    etiqueta_resultado.config(text=f"Hola, {nombre}.")
 
 root = tk.Tk()
 root.title("Ejercicio 3 - Entry")

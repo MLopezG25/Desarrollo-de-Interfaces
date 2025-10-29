@@ -1,7 +1,7 @@
 import tkinter as tk
 
 def mostrar_mensaje():
-    etiqueta.config(text="¡Has pulsado el botón!")
+    etiqueta.config(text="Has pulsado el botón")
 
 root = tk.Tk()
 root.title("Ejercicio 2 - Button")
