@@ -7,4 +7,52 @@
     android:layout_height="match_parent"
     tools:context=".DetailActivity">
 
+    <TextView
+        android:id="@+id/textTitle"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:text="Título de prueba"
+        android:textSize="24sp"
+        app:layout_constraintTop_toTopOf="parent"
+        app:layout_constraintStart_toStartOf="parent"
+        app:layout_constraintEnd_toEndOf="parent"
+        android:layout_marginTop="15dp"/>
+
+    <ImageView
+        android:id="@+id/imageDetail"
+        android:layout_width="200dp"
+        android:layout_height="200dp"
+        android:src="@drawable/bob"
+        android:scaleType="centerCrop"
+        android:background="@drawable/circulo_mascara"
+        android:clipToOutline="true"
+        app:layout_constraintTop_toBottomOf="@id/textTitle"
+        app:layout_constraintStart_toStartOf="parent"
+        app:layout_constraintEnd_toEndOf="parent"
+        android:layout_marginTop="20dp"/>
+        />
+
+    <TextView
+        android:id="@+id/textDescription"
+        android:layout_width="0dp"
+        android:layout_height="wrap_content"
+        android:text="Descripción de prueba. Aquí va un texto simulado."
+        android:textAlignment="center"
+        app:layout_constraintTop_toBottomOf="@id/imageDetail"
+        app:layout_constraintStart_toStartOf="parent"
+        app:layout_constraintEnd_toEndOf="parent"
+        android:layout_marginTop="40dp"
+        android:layout_marginStart="10dp"
+        android:layout_marginEnd="10dp"/>
+
+    <Button
+        android:id="@+id/buttonLike"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:text="Me gusta"
+        app:layout_constraintBottom_toBottomOf="parent"
+        app:layout_constraintStart_toStartOf="parent"
+        android:layout_marginBottom="25dp"
+        android:layout_marginStart="25dp"/>
+
 </androidx.constraintlayout.widget.ConstraintLayout>
