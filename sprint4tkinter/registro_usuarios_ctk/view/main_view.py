@@ -12,20 +12,20 @@ class MainView:
         # Título user
         self.titulo_usuarios = ctk.CTkLabel(self.lista_usuarios_scrollable, text="Usuarios", font=("Arial", 16, "bold"))
         self.titulo_usuarios.pack(pady=(5, 10))
-        # botón de añadir usuario
-        self.btn_añadir_usuario = ctk.CTkButton(master, text="Añadir Usuario")
-        self.btn_añadir_usuario.grid(row=1, column=0, columnspan=2, pady=10)
 
-
-        # Botón Salir
+        # marco Inferior
         self.frame_salir = ctk.CTkFrame(master)
         self.frame_salir.grid(row=2, column=0, columnspan=2, sticky="ew", padx=10, pady=(0, 10))
         self.frame_salir.grid_columnconfigure(0, weight=1)
+        self.frame_salir.grid_columnconfigure(1, weight=1)  # CAMBIO: añadimos segunda columna
 
-        self.btn_salir = ctk.CTkButton(
-            self.frame_salir, text="Salir",
-        )
-        self.btn_salir.grid(row=0, column=0, sticky="e", padx=10, pady=5)
+        # Botónb añadir
+        self.btn_añadir_usuario = ctk.CTkButton(self.frame_salir, text="Añadir Usuario")
+        self.btn_añadir_usuario.grid(row=0, column=0, sticky="w", padx=10, pady=5)
+
+        # Botón Salir
+        self.btn_salir = ctk.CTkButton(self.frame_salir, text="Salir")
+        self.btn_salir.grid(row=0, column=1, sticky="e", padx=10, pady=5)
 
         # Detalles del usuario
         self.detalles_frame = ctk.CTkFrame(master)
@@ -48,7 +48,7 @@ class MainView:
 
     def actualizar_lista_usuarios(self, usuarios, on_seleccionar_callback):
         for widget in self.lista_usuarios_scrollable.winfo_children():
-            if widget != self.titulo_usuarios:  
+            if widget != self.titulo_usuarios:
                 widget.destroy()
 
         for i, usuario in enumerate(usuarios):
