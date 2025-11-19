@@ -17,10 +17,16 @@ class AppController:
         # conectar botón de añadir usuario
         self.vista.btn_añadir_usuario.configure(command=self.abrir_ventana_añadir)
 
+        self.vista.menu_archivo.add_command(label="Guardar", command=self.guardar_usuarios)
+        self.vista.menu_archivo.add_command(label="Cargar", command=self.cargar_usuarios)
+
         # Avatares
         self.BASE_DIR = Path(__file__).resolve().parent.parent
         self.ASSETS_PATH = self.BASE_DIR / "assets"
         self.avatar_images = {}
+
+        # Carga CSV
+        self.cargar_usuarios()
 
         self.refrescar_lista_usuarios()
 
@@ -61,6 +67,16 @@ class AppController:
         self.modelo._usuarios.append(nuevo_usuario)
         self.refrescar_lista_usuarios()
         add_view.window.destroy()
+
+    # Guardar usuarios en CSV
+    def guardar_usuarios(self):
+        self.modelo.guardar_csv()
+        messagebox.showinfo("Info", "Usuarios guardados en CSV")
+
+    # Cargar usuarios desde CSV
+    def cargar_usuarios(self):
+        self.modelo.cargar_csv()
+        self.refrescar_lista_usuarios()
 
     def salir(self):
         self.root.destroy()

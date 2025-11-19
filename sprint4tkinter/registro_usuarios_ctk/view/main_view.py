@@ -1,29 +1,35 @@
 import customtkinter as ctk
-
+import tkinter
 class MainView:
     def __init__(self, master):
         master.grid_columnconfigure(0, weight=1)
         master.grid_columnconfigure(1, weight=1)
         master.grid_rowconfigure(0, weight=1)
 
+        # Barra de menú
+        self.menubar = tkinter.Menu(master)
+        master.config(menu=self.menubar)
+        self.menu_archivo = tkinter.Menu(self.menubar, tearoff=0)
+        self.menubar.add_cascade(label="Archivo", menu=self.menu_archivo)
+
+        # Lista de usuarios
         self.lista_usuarios_scrollable = ctk.CTkScrollableFrame(master)
         self.lista_usuarios_scrollable.grid(row=0, column=0, sticky="nsew", padx=10, pady=10)
 
-        # Título user
+        # Título usuarios
         self.titulo_usuarios = ctk.CTkLabel(self.lista_usuarios_scrollable, text="Usuarios", font=("Arial", 16, "bold"))
         self.titulo_usuarios.pack(pady=(5, 10))
 
-        # marco Inferior
+        # marco inferior con ambos botones
         self.frame_salir = ctk.CTkFrame(master)
         self.frame_salir.grid(row=2, column=0, columnspan=2, sticky="ew", padx=10, pady=(0, 10))
         self.frame_salir.grid_columnconfigure(0, weight=1)
-        self.frame_salir.grid_columnconfigure(1, weight=1)  # CAMBIO: añadimos segunda columna
+        self.frame_salir.grid_columnconfigure(1, weight=1)
 
-        # Botónb añadir
         self.btn_añadir_usuario = ctk.CTkButton(self.frame_salir, text="Añadir Usuario")
         self.btn_añadir_usuario.grid(row=0, column=0, sticky="w", padx=10, pady=5)
 
-        # Botón Salir
+        # Botón Salir dentro del mismo marco
         self.btn_salir = ctk.CTkButton(self.frame_salir, text="Salir")
         self.btn_salir.grid(row=0, column=1, sticky="e", padx=10, pady=5)
 
@@ -59,7 +65,6 @@ class MainView:
             )
             btn.pack(fill="x", padx=5, pady=2)
 
-
     def mostrar_detalles_usuario(self, usuario, avatar_image=None):
         self.label_nombre.configure(text=f"Nombre: {usuario.nombre}")
         self.label_edad.configure(text=f"Edad: {usuario.edad}")
@@ -73,8 +78,8 @@ class AddUserView:
     def __init__(self, master):
         self.window = ctk.CTkToplevel(master)
         self.window.title("Añadir Nuevo Usuario")
-        self.window.geometry("300x400")  # CAMBIO: un poco más alto para el botón cancelar
-        self.window.grab_set()  # Modal
+        self.window.geometry("300x400")
+        self.window.grab_set()
 
         # Nombre
         self.nombre_entry = ctk.CTkEntry(self.window, placeholder_text="Nombre")
@@ -84,7 +89,7 @@ class AddUserView:
         self.edad_entry = ctk.CTkEntry(self.window, placeholder_text="Edad")
         self.edad_entry.pack(pady=5)
 
-        # CAMBIO: Género con Radiobuttons
+        # Género
         self.genero_var = ctk.StringVar(value="Otro")
         self.genero_label = ctk.CTkLabel(self.window, text="Género:")
         self.genero_label.pack(pady=(10, 0))
@@ -96,7 +101,7 @@ class AddUserView:
         self.genero_o = ctk.CTkRadioButton(self.window, text="Otro", variable=self.genero_var, value="Otro")
         self.genero_o.pack(anchor="w", padx=20)
 
-        # CAMBIO: Avatar con OptionMenu
+        # Avatar
         self.avatar_var = ctk.StringVar(value="avatar1.png")
         self.avatar_label = ctk.CTkLabel(self.window, text="Avatar:")
         self.avatar_label.pack(pady=(10, 0))
@@ -115,7 +120,6 @@ class AddUserView:
         self.guardar_button = ctk.CTkButton(self.button_frame, text="Guardar")
         self.guardar_button.pack(side="left", padx=10)
 
-        # CAMBIO: botón Cancelar que cierra la ventana
         self.cancelar_button = ctk.CTkButton(self.button_frame, text="Cancelar", fg_color="gray", hover_color="darkgray",
                                              command=self.window.destroy)
         self.cancelar_button.pack(side="right", padx=10)
@@ -124,6 +128,6 @@ class AddUserView:
         return {
             "nombre": self.nombre_entry.get(),
             "edad": self.edad_entry.get(),
-            "genero": self.genero_var.get(),   # CAMBIO: recogemos valor de radiobuttons
-            "avatar": self.avatar_var.get()    # CAMBIO: recogemos valor de optionmenu
+            "genero": self.genero_var.get(),
+            "avatar": self.avatar_var.get()
         }
