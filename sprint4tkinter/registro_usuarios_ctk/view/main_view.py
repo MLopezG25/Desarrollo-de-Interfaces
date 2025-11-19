@@ -9,6 +9,9 @@ class MainView:
         self.lista_usuarios_scrollable = ctk.CTkScrollableFrame(master)
         self.lista_usuarios_scrollable.grid(row=0, column=0, sticky="nsew", padx=10, pady=10)
 
+        # Título user
+        self.titulo_usuarios = ctk.CTkLabel(self.lista_usuarios_scrollable, text="Usuarios", font=("Arial", 16, "bold"))
+        self.titulo_usuarios.pack(pady=(5, 10))
         # botón de añadir usuario
         self.btn_añadir_usuario = ctk.CTkButton(master, text="Añadir Usuario")
         self.btn_añadir_usuario.grid(row=1, column=0, columnspan=2, pady=10)
@@ -28,6 +31,10 @@ class MainView:
         self.detalles_frame = ctk.CTkFrame(master)
         self.detalles_frame.grid(row=0, column=1, sticky="nsew", padx=10, pady=10)
 
+        # Título detalles
+        self.titulo_detalles = ctk.CTkLabel(self.detalles_frame, text="Detalles del Usuario", font=("Arial", 16, "bold"))
+        self.titulo_detalles.pack(pady=(5, 10))
+
         self.label_nombre = ctk.CTkLabel(self.detalles_frame, text="Nombre: ")
         self.label_nombre.pack(pady=5)
         self.label_edad = ctk.CTkLabel(self.detalles_frame, text="Edad: ")
@@ -41,7 +48,8 @@ class MainView:
 
     def actualizar_lista_usuarios(self, usuarios, on_seleccionar_callback):
         for widget in self.lista_usuarios_scrollable.winfo_children():
-            widget.destroy()
+            if widget != self.titulo_usuarios:  
+                widget.destroy()
 
         for i, usuario in enumerate(usuarios):
             btn = ctk.CTkButton(
