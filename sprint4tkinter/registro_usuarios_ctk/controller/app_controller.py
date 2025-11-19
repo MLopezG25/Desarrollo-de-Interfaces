@@ -6,7 +6,7 @@ class AppController:
         self.root = root
         self.modelo = GestorUsuarios()
         self.vista = MainView(root)
-
+        self.vista.btn_salir.configure(command=self.salir)
         self.refrescar_lista_usuarios()
 
     def refrescar_lista_usuarios(self):
@@ -18,3 +18,6 @@ class AppController:
         if 0 <= indice < len(usuarios):
             usuario = usuarios[indice]
             self.vista.mostrar_detalles_usuario(usuario)
+
+    def salir(self):
+        self.root.destroy()

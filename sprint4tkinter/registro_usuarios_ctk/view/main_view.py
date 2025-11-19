@@ -10,6 +10,18 @@ class MainView:
         self.lista_usuarios_scrollable = ctk.CTkScrollableFrame(master)
         self.lista_usuarios_scrollable.grid(row=0, column=0, sticky="nsew", padx=10, pady=10)
 
+
+
+        # Botón Salir
+        self.frame_salir = ctk.CTkFrame(master)
+        self.frame_salir.grid(row=2, column=0, columnspan=2, sticky="ew", padx=10, pady=(0, 10))
+        self.frame_salir.grid_columnconfigure(0, weight=1)
+
+        self.btn_salir = ctk.CTkButton(
+            self.frame_salir, text="Salir",
+        )
+        self.btn_salir.grid(row=0, column=0, sticky="e", padx=10, pady=5)
+
         # Detalles del usuario
         self.detalles_frame = ctk.CTkFrame(master)
         self.detalles_frame.grid(row=0, column=1, sticky="nsew", padx=10, pady=10)
